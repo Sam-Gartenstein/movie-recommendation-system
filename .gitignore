@@ -1,0 +1,10 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Artifacts / models
+artifacts/
+*.pkl
