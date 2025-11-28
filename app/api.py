@@ -1,6 +1,7 @@
+from typing import List, Optional
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import List, Optional
 import joblib
 import pandas as pd
 
@@ -14,7 +15,7 @@ class MovieRecommendation(BaseModel):
     title: str
     score: float
 
-        
+
 class HealthStatus(BaseModel):
     status: str
     movies_loaded: bool
@@ -22,7 +23,10 @@ class HealthStatus(BaseModel):
     similarity_loaded: bool
 
 
+# ---------- FastAPI app ----------
+
 app = FastAPI(title="Movie Recommender (Item–Item CF)")
+
 
 # ---------- Global artifacts (lazy-loaded) ----------
 
@@ -89,7 +93,7 @@ def health() -> HealthStatus:
 
 
 @app.get("/similar", response_model=List[MovieRecommendation])
-def similar(movie: str, n: int = 10):
+def similar(movie: str, n: int = 10) -> List[MovieRecommendation]:
     """
     Recommend movies similar to a given movie title using item–item CF.
 
@@ -112,7 +116,6 @@ def similar(movie: str, n: int = 10):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal error: {e}")
 
-    # Make sure the columns match MovieRecommendation fields
     return [
         MovieRecommendation(
             movie_id=int(row["movie_id"]),
@@ -124,7 +127,7 @@ def similar(movie: str, n: int = 10):
 
 
 @app.get("/recommend", response_model=List[MovieRecommendation])
-def recommend(user_id: int, n: int = 10):
+def recommend(user_id: int, n: int = 10) -> List[MovieRecommendation]:
     """
     Recommend movies for a given user using item–item CF.
 
