@@ -16,11 +16,4 @@ To highlight different aspects of building ML-powered applications, the project 
 
 Together, these components demonstrate how recommendation models can be packaged, served, and surfaced through modern production tools.
 
----
 
-## 🚧 Next Steps
-
-Planned enhancements include:
-
-- Adding **matrix factorization models** (e.g., SVD)  
-- Experimenting with hybrid recommendation strategies  
