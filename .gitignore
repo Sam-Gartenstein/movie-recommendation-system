@@ -8,3 +8,4 @@ __pycache__/
 # Artifacts / models
 artifacts/
 *.pkl
+.venv/
