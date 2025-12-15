@@ -1,19 +1,24 @@
 # 🎬 Movie Recommendation System
 
-This project implements a complete end-to-end **movie recommendation system** using **item–item collaborative filtering**.  
-The system analyzes user–movie interactions to compute similarity scores between items and generate personalized movie recommendations.
+This project implements a complete end-to-end **movie recommendation system** using two collaborative filtering approaches:
 
-To highlight different aspects of building ML-powered applications, the project includes:
+- **Item–Item Collaborative Filtering** using cosine similarity
+- **Matrix Factorization (FunkMF)** trained via stochastic gradient descent
 
-- **FastAPI backend**  
-  Exposes API endpoints (`/similar`, `/recommend`) with typed responses and a service health check.
+The system analyzes user–movie rating patterns to recommend similar movies and generate personalized recommendations for individual users.
 
-- **Dockerized deployment**  
-  Provides a reproducible environment for running the recommender and serving the API.
+To highlight different aspects of building and deploying ML-powered applications, the project includes:
 
-- **Gradio web interface**  
-  Enables interactive exploration of similar movies and user-specific recommendations in a simple UI.
+- **Offline artifact building**
+  - A reproducible script that prepares data, computes item–item similarity matrices, and trains a matrix factorization model
+  - All models and intermediate results are saved as reusable artifacts
 
-Together, these components demonstrate how recommendation models can be packaged, served, and surfaced through modern production tools.
+- **Gradio web interface**
+  - An interactive UI for exploring similar movies and user-specific recommendations
+  - Supports both item–item collaborative filtering and FunkMF-based recommendations in real time
 
+- **Dockerized deployment**
+  - A containerized setup for running the Gradio app consistently across environments
+  - Enables easy local or remote deployment without manual environment configuration
 
+Together, these components demonstrate how recommendation models can be trained offline, served efficiently for real-time inference, and exposed through a modern, user-friendly interface.
