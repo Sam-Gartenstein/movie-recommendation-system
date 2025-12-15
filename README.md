@@ -34,5 +34,7 @@ The first step is to clone the repo, and then go the directory.
 ```
 git clone https://github.com/Sam-Gartenstein/movie-recommendation-system.git
 ```
-
+```
+cd movie-recommendation-system
+```
 
