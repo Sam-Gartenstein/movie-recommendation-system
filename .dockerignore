@@ -1,0 +1,21 @@
+# Python environments and caches
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Git
+.git/
+
+# Test / tooling caches
+.pytest_cache/
+.mypy_cache/
