@@ -29,7 +29,7 @@ Together, these components demonstrate how recommendation models can be trained 
 
 ### 1) Clone the repo
 
-The first step is to clone the repo, and then go the directory.
+Clone the repository and navigate into the project directory:
 
 ```
 git clone https://github.com/Sam-Gartenstein/movie-recommendation-system.git
@@ -37,6 +37,8 @@ cd movie-recommendation-system
 ```
 
 ### 2) Create and activate a virtual environment
+
+Create a virtual environment to isolate dependencies:
 
 ```
 python3 -m venv .venv
@@ -46,13 +48,18 @@ python -m pip install --upgrade pip
 
 ### 3) Install dependencies
 
+Install the required Python packages:
+
 ```
 pip install -r requirements.txt
 ```
 
 ### 4) Build artifacts (one-time setup)
 
-This generates the saved `.pkl` files used by the app, including the trained FunkMF model:
+This step prepares all required model artifacts, including:
+- the user–item matrix
+- the item–item similarity matrix
+- the trained FunkMF model
 
 ```
 PYTHONPATH=./src python -m recommender.build_artifacts
@@ -60,11 +67,13 @@ PYTHONPATH=./src python -m recommender.build_artifacts
 
 ### 5) Run the Gradio app
 
+Launch the interactive Gradio interface:
+
 ```
 PYTHONPATH=./src python -m app.gradio_app
 ```
 
-**Open**:
+**Open in your browser**:
 - http://localhost:7860/
 
 ### 6) Stop and deactivate
