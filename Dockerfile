@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy source code, API, and precomputed artifacts into the image
+# Copy source code and artifacts into the image
 COPY src ./src
 COPY app ./app
 COPY artifacts ./artifacts
@@ -16,8 +16,9 @@ COPY artifacts ./artifacts
 # Make src importable as a package
 ENV PYTHONPATH=/app/src
 
-# Expose the port FastAPI will listen on
-EXPOSE 8000
+# Expose the port Gradio will listen on
+EXPOSE 7860
 
-# Start the FastAPI server when the container runs
-CMD ["uvicorn", "app.api:app", "--host", "0.0.0.0", "--port", "8000"]
+# Start the Gradio app when the container runs
+CMD ["python", "-m", "app.gradio_app"]
+
