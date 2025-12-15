@@ -33,8 +33,50 @@ The first step is to clone the repo, and then go the directory.
 
 ```
 git clone https://github.com/Sam-Gartenstein/movie-recommendation-system.git
-```
-```
 cd movie-recommendation-system
 ```
 
+### 2) Create and activate a virtual environment
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+```
+
+### 3) Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+### 4) Build artifacts (one-time setup)
+
+This generates the saved `.pkl` files used by the app, including the trained FunkMF model:
+
+```
+PYTHONPATH=./src python -m recommender.build_artifacts
+```
+
+### 5) Run the Gradio app
+
+```
+PYTHONPATH=./src python -m app.gradio_app
+```
+
+**Open**:
+- http://localhost:7860/
+
+### 6) Stop and deactivate
+
+Stop the app with:
+
+```
+Ctrl + C
+```
+
+Deactivate the environment:
+
+```
+deactivate
+```
