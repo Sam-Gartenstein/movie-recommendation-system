@@ -22,3 +22,17 @@ To highlight different aspects of building and deploying ML-powered applications
   - Enables easy local or remote deployment without manual environment configuration
 
 Together, these components demonstrate how recommendation models can be trained offline, served efficiently for real-time inference, and exposed through a modern, user-friendly interface.
+
+-----
+
+## Instructions (Run Locally)
+
+### 1) Clone the repo
+
+The first step is to clone the repo, and then go the directory.
+
+```
+git clone https://github.com/Sam-Gartenstein/movie-recommendation-system.git
+```
+
+
