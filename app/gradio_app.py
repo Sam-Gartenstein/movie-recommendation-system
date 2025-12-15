@@ -3,7 +3,7 @@ import gradio as gr
 import pandas as pd
 
 from recommender.item_item_cf import recommend_similar, recommend_for_user
-from recommender.funk_mf import FunkMF
+from recommender.funk_mf import FunkMF  
 
 # ------------------ Load artifacts ------------------
 
@@ -12,22 +12,11 @@ user_item_matrix = joblib.load("artifacts/user_item_matrix.pkl")
 item_similarity_df = joblib.load("artifacts/item_similarity_df.pkl")
 
 # ratings_df should be saved with columns like: userId, movieId, rating
-# e.g., joblib.dump(ratings_df, "artifacts/ratings_df.pkl")
 ratings_df = joblib.load("artifacts/ratings_df.pkl")
 
-# ------------------ Train FunkMF model ------------------
+# ------------------ Load FunkMF model ------------------
 
-# Create and train the FunkMF model once when the app starts
-mf_model = FunkMF(
-    n_factors=20,
-    n_epochs=10,
-    lr=0.01,
-    reg=0.02,
-    random_state=42,
-)
-
-mf_model.fit(ratings_df)
-
+mf_model = joblib.load("artifacts/funk_mf_model.pkl")
 
 # ------------------ Item–Item CF helper functions ------------------
 
@@ -39,9 +28,6 @@ def similar_movies(movie_title: str, n: int = 5):
         item_similarity_df=item_similarity_df,
         n=n,
     )
-
-    # Debug: see what columns we have
-    print("similar_movies recs.columns:", list(recs.columns))
 
     # Try to infer id and score columns
     possible_score_cols = ["score", "similarity", "sim_score"]
@@ -80,9 +66,6 @@ def recommend_for_user_ui(user_id: int, n: int = 5):
         return pd.DataFrame(
             [{"movie_id": None, "title": "No recommendations", "score": None}]
         )
-
-    # Debug: see what columns we have
-    print("recommend_for_user recs.columns:", list(recs.columns))
 
     possible_score_cols = ["score", "similarity", "sim_score"]
     score_col = next((c for c in possible_score_cols if c in recs.columns), None)
@@ -157,4 +140,3 @@ with gr.Blocks(title="🎬 Movie Recommender") as demo:
 
 if __name__ == "__main__":
     demo.launch(server_name="0.0.0.0", server_port=7860)
-
